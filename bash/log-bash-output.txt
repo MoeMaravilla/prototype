@@ -1,0 +1,26 @@
+##### This is not a script - These are instructions
+
+# Run a new bash command
+bash
+
+# Run these commands (or equivalent)
+exec   > >(tee -ia /tmp/bash.log)
+exec  2> >(tee -ia /tmp/bash.log >& 2)
+exec 19> /tmp/bash.log
+
+export BASH_XTRACEFD="19"
+
+# Optionally set this (gets hard to read)
+set -x
+
+# Run your commands
+command1
+command2
+
+# Exit the bash command
+exit
+
+# Find history (in color) in /tmp/bash.log
+
+# Convert to html with aha
+cat /tmp/bash.log| aha > /tmp/bash-log.html
